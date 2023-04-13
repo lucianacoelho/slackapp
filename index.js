@@ -33,20 +33,20 @@ app.message('#save', async ({ message, say }) => {
   if (message.thread_ts) {
 
     result = await app.client.conversations.replies({
-      token: process.env.TOKEN,
+      token: token,
       channel: message.channel,
       ts: message.thread_ts
     });
 
     link = await app.client.
       chat.getPermalink({
-        token: process.env.TOKEN,
+        token: token,
         channel: message.channel,
         message_ts: message.ts
       });
 
     getWhoAskedInfo = await app.client.users.info({
-      token: process.env.TOKEN,
+      token: token,
       user: result.messages[0].user
     });
 
@@ -58,7 +58,7 @@ app.message('#save', async ({ message, say }) => {
     });
 
     getWhoSavedInfo = await app.client.users.info({
-      token: process.env.TOKEN,
+      token: token,
       user: `${message.user}`
     });
 
@@ -138,7 +138,7 @@ app.message('#save', async ({ message, say }) => {
     for (i = 0; i < Object.keys(result.messages).length; i++) {
 
       getWhoAnsweredInfo = await app.client.users.info({
-        token: process.env.TOKEN,
+        token: token,
         user: result.messages[i].user
       });
 
@@ -380,7 +380,7 @@ doc.moveDown(); // separate tables
 
   await app.client.files.upload({
 
-    token: process.env.TOKEN,
+    token: token,
     file: fs.createReadStream('PayPal SMARTSCOUT Latest FAQ.pdf'),
     channels: message.user
   });
