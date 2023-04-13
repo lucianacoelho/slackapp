@@ -4,6 +4,9 @@ const fs = require('fs');
 const mysql = require('mysql2');
 const PDFDocument = require("pdfkit-table");
 
+let token = "xoxb-4248656851431-4260526979909-sJs9bwq975wqTEeOsGjRfI4W"
+let secret = "971ddbb44561bc5d78f6aa07cc0fdef7"
+let app_token = "xapp-1-A047R3UB6GK-4276269730545-3ad5ebc052c22ceface05cf60d51e10c70c0ea666f55d5b65a0becec74d2afb9"
 // create the connection to database
 const con = mysql.createConnection({
   host: 'localhost',
@@ -18,10 +21,10 @@ if (con) {
 
 // connects with slack
 const app = new App({
-  token: process.env.TOKEN, //Find in the Oauth  & Permissions tab
-  signingSecret: process.env.SIGNING_SECRET, // Find in Basic Information Tab
+  token: token, //Find in the Oauth  & Permissions tab
+  signingSecret: secret, // Find in Basic Information Tab
   socketMode: true,
-  appToken: process.env.APP_TOKEN // Token from the App-level Token that we created
+  appToken: app_token // Token from the App-level Token that we created
 });
 
 //saves the thread into the database
